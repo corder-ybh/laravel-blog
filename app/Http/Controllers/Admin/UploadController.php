@@ -7,6 +7,7 @@ use App\Http\Requests\UploadNewFolderRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\UploadsManager;
+use Illuminate\Support\Facades\File;
 
 class UploadController extends Controller
 {
@@ -40,7 +41,7 @@ class UploadController extends Controller
         $new_folder = $request->get('new_folder');
         $folder = $request->get('folder') . '/' . $new_folder;
 
-        $result = $this->manager->creageDirectory($folder);
+        $result = $this->manager->createDirectory($folder);
 
         if ($result == true) {
             return redirect()
@@ -106,10 +107,21 @@ class UploadController extends Controller
     {
         $file = $_FILES['file'];
         $fileName = $request->get('file_name');
-        $fileName = $file ?: $file['name'];
+        $fileName = $fileName ?: $file['name'];
         $path = str_finish($request->get('folder'), '/') . $fileName;
         $content = File::get($file['tmp_name']);
 
         $result = $this->manager->saveFile($path, $content);
+
+        if ($result === true) {
+            return redirect()
+                ->back()
+                ->with("success", '文件「' . $fileName . '」上传成功.');
+        }
+
+        $error = $result ?: "文件上传出错.";
+        return redirect()
+            ->back()
+            ->withErrors([$error]);
     }
 }

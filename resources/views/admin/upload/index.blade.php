@@ -9,7 +9,7 @@
                 <div class="pull-left">
                     <ul class="breadcrumb">
                         @foreach($breadcrumbs as $path => $disp)
-                            <li><a href="/admin/upload?folder={{ $path }}">{{ $disp }}</a></li>
+                            <li><a href="/admin/upload?folder={{ $path }}">{{ $disp }}/</a></li>
                         @endforeach
                         <li class="active">{{ $folderName }}</li>
                     </ul>
