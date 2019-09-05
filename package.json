@@ -21,6 +21,7 @@
         "pickadate": "^5.0.0-alpha.3",
         "popper.js": "^1.12",
         "selectize": "^0.12.6",
+        "startbootstrap-clean-blog": "^5.0.7",
         "vue": "^2.5.7"
     }
 }

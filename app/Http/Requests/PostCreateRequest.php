@@ -26,8 +26,10 @@ class PostCreateRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'page_image' => 'required',
             'subtitle' => 'required',
             'content' => 'required',
+            'meta_description' => 'required',
             'publish_date' => 'required',
             'publish_time' => 'required',
             'layout' => 'required'
@@ -42,15 +44,16 @@ class PostCreateRequest extends FormRequest
         $published_at = new Carbon(
             $this->publish_date . ' ' . $this->publish_time
         );
-        return [
+        $post =  [
             'title' => $this->title,
             'subtitle' => $this->subtitle,
             'page_image' => $this->page_image,
             'content_raw' => $this->get('content'),
-            'meta_description' => $this->meta_decription,
+            'meta_description' => $this->meta_description,
             'is_draft' => (bool)$this->is_draft,
             'published_at' => $published_at,
             'layout' => $this->layout
         ];
+        return $post;
     }
 }
