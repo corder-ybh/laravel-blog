@@ -22,3 +22,29 @@ function is_image($mimeType)
 {
     return starts_with($mimeType, 'image/');
 }
+
+/**
+ * 用于在视图的复选框和单选框中设置 checked 属性
+ * @param $value
+ * @return string
+ */
+function checked($value)
+{
+    return $value ? 'checked' : "";
+}
+
+/**
+ * 用于返回上传图片的完整路径
+ * @param null $value
+ * @return \Illuminate\Config\Repository|mixed|string|null
+ */
+function page_image($value = null)
+{
+    if (empty($value)) {
+        $value = config('blog.page_image');
+    }
+    if (!starts_with($value, 'http') && $value[0] !== '/') {
+        $value = config('blog.uploads.webpath') . '/' . $value;
+    }
+    return $value;
+}
