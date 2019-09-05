@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\PostCreateRequest;
 use App\Models\Post;
 use App\Models\Tag;
 use Carbon\Carbon;
@@ -65,7 +66,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostCreateRequest $request)
     {
         $post = Post::create($request->postFillData());
         $post->syncTags($request->get('tags', []));

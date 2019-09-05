@@ -25,7 +25,7 @@ class PostCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'tetle' => 'required',
+            'title' => 'required',
             'subtitle' => 'required',
             'content' => 'required',
             'publish_date' => 'required',
