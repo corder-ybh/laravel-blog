@@ -1,4 +1,4 @@
-@extends('admin.layout)
+@extends('admin.layout')
 
 @section('styles')
     <link href="{{ asset('css/pickadate.min.css') }}" rel="stylesheet">
