@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Services\PostService;
 use Illuminate\Http\Request;
 use App\Models\Post;
